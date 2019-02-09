@@ -1,10 +1,14 @@
 @charset "utf-8";
 
+.top-btn {
+  margin: 0px 10px;
+}
+
 footer {
   border-top: 1px solid #e7e7e7;
   background: #f2f2f2;
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 footer table {

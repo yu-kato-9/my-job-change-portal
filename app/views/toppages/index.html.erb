@@ -1,12 +1,18 @@
-<div class="jumbotron">
-  <h1>私の転職(仮)</h1>
-  <p>概要</p>
-  <div class="text-center">
-    <div class="btn-group" role="group">
-      <p><%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-lg top-btn' %>
-      <a class="btn btn-primary btn-lg top-btn" href="#">ログイン</a></p>
-<%#            <p><%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-lg' %>
-<%#      <%= link_to 'ログイン', login_path, class: 'btn btn-primary btn-lg' %>
+<% if logged_in? %>
+  <h1>test</h1>
+<% else %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>私の転職(仮)</h1>
+      <p>概要</p>
+      <div class="text-center">
+        <div class="btn-group" role="group">
+          <p>
+            <%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-lg top-btn' %>
+            <%= link_to 'ログイン', login_path, class: 'btn btn-primary btn-lg top-btn' %>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
