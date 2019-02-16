@@ -8,6 +8,7 @@ class CreateServices < ActiveRecord::Migration[5.0]
       t.string :name_of_person_in_charge
       t.string :tel_of_person_in_charge
       t.string :email_of_person_in_charge
+      t.references :users, foreign_key: true
 
       t.timestamps
     end

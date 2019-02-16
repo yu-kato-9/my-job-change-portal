@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190208130400) do
+ActiveRecord::Schema.define(version: 20190211113150) do
 
   create_table "services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20190208130400) do
     t.string   "email_of_person_in_charge"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_services_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -32,4 +34,5 @@ ActiveRecord::Schema.define(version: 20190208130400) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "services", "users"
 end

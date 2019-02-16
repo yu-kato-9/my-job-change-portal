@@ -1,0 +1,39 @@
+<h1>転職サービス管理</h1>
+
+<div class="text-right">
+  <%= link_to '新規登録', new_service_path, class: 'btn btn-primary', :style => "margin-bottom: 10px;" %>
+</div>
+
+<% if @services.present? %>
+  <table class="table table-bordered" width="100%" style="table-layout: fixed;">
+    <thead>
+      <tr>
+        <th width="30%">サービス名</th>
+        <th width="20%">種別</th>
+        <th width="50%">メモ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @services.each do |service| %>
+        <tr>
+          <td>
+            <%= link_to '編集', edit_service_path(service), class: 'btn btn-primary', :style => "margin: 0px 0px 0px 5px; " %>
+            <%= link_to '削除', service, method: :delete, data: { confirm: "削除しますか？"}, class: 'btn btn-danger', :style => "margin: 0px 15px 0px 5px; " %>
+            <%= service.name %>
+          </td>
+          <% if service.kind == "転職サイト" %>
+            <td><%= service.kind %></td>
+          <% else %>
+            <td><%= service.kind %><br>
+            ＜<%= link_to '詳細', service %>＞</td>
+          <% end %>
+          <td><%= service.memo %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>登録されているサービスはありません。新規登録ボタンより登録して下さい。</p>
+<% end %>
+
+<%= paginate @services %>

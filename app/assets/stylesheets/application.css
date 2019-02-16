@@ -12,11 +12,21 @@ footer {
 }
 
 footer table {
-  width: 100%;
 }
 
 footer table td {
   width: 50%;
 }
 
+th {
+  text-align: center;
+}
+
+.return-link {
+  text-align: center;
+}
+
+.service-show-btn {
+  margin-bottom: 5px;
+}
 

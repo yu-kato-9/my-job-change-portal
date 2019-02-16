@@ -16,8 +16,8 @@
             <li><%= link_to '新規登録', signup_path %></li>
             <li><%= link_to 'ログイン', login_path %></li>
           <% else %>
-            <li><a href="#">マイページ</a></li>
-            <li><a href="#">転職サービス管理</a></li>
+            <li><%= link_to 'マイページ', user_path(current_user) %></li>
+            <li><%= link_to '転職サービス管理', services_path %></li>
             <li><a href="#">候補企業管理</a></li>
             <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
           <% end %>
