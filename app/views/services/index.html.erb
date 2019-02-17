@@ -19,7 +19,7 @@
           <td>
             <%= link_to '編集', edit_service_path(service), class: 'btn btn-primary', :style => "margin: 0px 0px 0px 5px; " %>
             <%= link_to '削除', service, method: :delete, data: { confirm: "削除しますか？"}, class: 'btn btn-danger', :style => "margin: 0px 15px 0px 5px; " %>
-            <%= service.name %>
+            <%= link_to service.name, service.url %>
           </td>
           <% if service.kind == "転職サイト" %>
             <td><%= service.kind %></td>

@@ -1,0 +1,36 @@
+<h1><%= @enterprise.name %></h1>
+<p><%= link_to '公式サイト', @enterprise.url %></p>
+
+<table class="table table-bordered" style="table-layout: fixed;">
+  <tbody>
+    <tr>
+      <th width="30%">代表者氏名</th>
+      <td width="70%"><%= @enterprise.name_of_president %></td>
+    </tr>
+    <tr>
+      <th>設立日</th>
+      <td>
+        <%= @enterprise.foundation_date.year %>/
+        <%= @enterprise.foundation_date.month %>/
+        <%= @enterprise.foundation_date.day %>
+      </td>
+    </tr>
+    <tr>
+      <th>所在地</th>
+      <td><%= @enterprise.location %></td>
+    </tr>
+    <tr>
+      <th>事業内容</th>
+      <td><%= @enterprise.business_contents %></td>
+    </tr>
+    <tr>
+      <th>従業員数</th>
+      <td><%= number_with_delimiter(@enterprise.number_of_employees) %>名</td>
+    </tr>
+    <tr>
+      <th>平均年齢</th>
+      <td><%= @enterprise.average_age %>歳</td>
+    </tr>
+  </tbody>
+</table>
+<div class="return-link"><%= link_to '候補企業画面に戻る', enterprises_path %></div>

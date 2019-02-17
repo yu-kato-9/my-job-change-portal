@@ -1,0 +1,32 @@
+
+<h1>候補企業 新規登録</h1>
+
+<%= form_tag new_enterprise_path, :method => 'get' do %>
+  <p>
+    企業名
+    <%= text_field_tag :keyword, params[:keyword] %>
+    <%= submit_tag "検索", :name => nil %>
+  </p>
+<% end %>
+
+<% if @enterprises.present? %>
+  <table class="table table-bordered" width="100%" style="table-layout: fixed;">
+    <thead>
+      <tr>
+        <th width="30%">企業名</th>
+        <th width="70%">事業内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enterprises.each do |enterprise| %>
+        <tr>
+          <td>
+            <%= link_to '登録', enterprise_path(enterprise), class: 'btn btn-primary', :style => "margin: 0px 15px 0px 5px; " %>
+            <%= enterprise.name %>
+          </td>
+          <td><%= enterprise.business_contents %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

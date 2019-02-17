@@ -8,7 +8,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-left" href="/"><img src="/image/logo.png" alt="私の転職"></a>
+        <% unless logged_in? %>
+          <a class="navbar-left" href="/"><img src="/image/logo.png" alt="私の転職"></a>
+        <% else %>
+          <%= link_to user_path(current_user) do %>
+            <img src="/image/logo.png" alt="私の転職">
+          <% end %>
+        <% end %>
       </div>
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav navbar-right">
@@ -18,7 +24,7 @@
           <% else %>
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <li><%= link_to '転職サービス管理', services_path %></li>
-            <li><a href="#">候補企業管理</a></li>
+            <li><%= link_to '候補企業管理', enterprises_path %></li>
             <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
           <% end %>
         </ul>
