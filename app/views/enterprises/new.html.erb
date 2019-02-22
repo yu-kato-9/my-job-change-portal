@@ -9,24 +9,22 @@
   </p>
 <% end %>
 
-<% if @enterprises.present? %>
-  <table class="table table-bordered" width="100%" style="table-layout: fixed;">
-    <thead>
+<table class="enterprise-new-table table table-bordered" width="100%">
+  <thead>
+    <tr>
+      <th width="30%">企業名</th>
+      <th width="70%">事業内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enterprises.each do |enterprise| %>
       <tr>
-        <th width="30%">企業名</th>
-        <th width="70%">事業内容</th>
+        <td>
+          <%= render 'enterprises/register_button', enterprise: enterprise %>
+          <%= enterprise.name %>
+        </td>
+        <td><%= enterprise.business_contents %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @enterprises.each do |enterprise| %>
-        <tr>
-          <td>
-            <%= link_to '登録', enterprise_path(enterprise), class: 'btn btn-primary', :style => "margin: 0px 15px 0px 5px; " %>
-            <%= enterprise.name %>
-          </td>
-          <td><%= enterprise.business_contents %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,7 +1,7 @@
 <h1><%= @enterprise.name %></h1>
 <p><%= link_to '公式サイト', @enterprise.url %></p>
 
-<table class="table table-bordered" style="table-layout: fixed;">
+<table class="enterprise-show-table table table-bordered">
   <tbody>
     <tr>
       <th width="30%">代表者氏名</th>
@@ -31,6 +31,19 @@
       <th>平均年齢</th>
       <td><%= @enterprise.average_age %>歳</td>
     </tr>
+    <% if current_user.registering?(@enterprise) %>
+      <tr>
+        <th>メモ</th>
+        <!--<td><%= current_user.candidates.find_by(enterprise_id: @enterprise.id).memo %></td>-->
+        <td>
+          <%= form_for(current_user.candidates.find_by(enterprise_id: @enterprise.id)) do |f| %>
+            <%= f.text_field :memo, class: 'form-control' %>
+            <%= hidden_field_tag :enterprise_id, @enterprise.id %>
+            <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-<div class="return-link"><%= link_to '候補企業画面に戻る', enterprises_path %></div>
+<div class="return-link"><%= link_to 'ひとつ前の画面に戻る', :back %></div>

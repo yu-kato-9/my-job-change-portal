@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-.top-btn {
-  margin: 0px 10px;
-}
-
 footer {
   border-top: 1px solid #e7e7e7;
   background: #f2f2f2;
@@ -11,22 +7,84 @@ footer {
   margin-top: 40px;
 }
 
-footer table {
-}
-
 footer table td {
   width: 50%;
 }
 
-th {
+.app-return-link {
   text-align: center;
 }
 
-.return-link {
+
+.toppage-btn {
+  margin: 0px 10px;
+}
+
+.logo {
+  width: 240px;
+  height: 60px;
+  background: url("/images/logo.png");
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.panel .panel-heading h3 {
+  font-size: 18px;
+  margin: 5px auto;
+}
+
+.table {
+  table-layout: fixed;
+}
+
+.service-index-table>thead>tr>th,
+.enterprise-index-table>thead>tr>th,
+.enterprise-new-table>thead>tr>th {
   text-align: center;
+}
+
+.service-index-table>tbody>tr>td,
+.service-show-table>tbody>tr>td,
+.enterprise-index-table>tbody>tr>td,
+.enterprise-show-table>tbody>tr>td,
+.enterprise-new-table>tbody>tr>td {
+  vertical-align: middle;
+}
+
+.enterprise-index-table>tbody>tr>td form,
+.enterprise-new-table>tbody>tr>td form {
+  display: inline;
+}
+
+.user-profile .name h1 {
+  font-size: 20px; 
+}
+
+.user-show-contactlist {
+  padding: 5px;
+}
+
+.service-index-edit-btn {
+  margin: 0px 0px 0px 5px;
+}
+
+.service-index-delete-btn {
+  margin: 0px 15px 0px 5px;
 }
 
 .service-show-btn {
   margin-bottom: 5px;
 }
 
+.candidate-regist-btn {
+  margin-right: 5px;
+}
+
+.memo-update-btn {
+  margin-top: 5px;
+}
+
+.enterprise-newregi-btn {
+  margin-bottom: 5px;
+}

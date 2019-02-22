@@ -1,15 +1,16 @@
-<h1><%= service.name %></h1>
+<h1><%= @service.name %></h1>
 
 <div class="text-right">
   <%= link_to '編集', edit_service_path, class: 'btn btn-primary service-show-btn' %>
   <%= link_to '削除', @service, method: :delete, data: { confirm: "削除しますか？"}, class: 'btn btn-danger service-show-btn' %>
 </div>
 
-<table class="table table-bordered" style="table-layout: fixed;">
+
+<table class="service-show-table table table-bordered">
   <tbody>
     <tr>
-      <th width="30%">担当者名</th>
-      <td width="70%"><%= @service.name_of_person_in_charge %></td>
+      <th width="20%">担当者名</th>
+      <td width="80%"><%= @service.name_of_person_in_charge %></td>
     </tr>
     <tr>
       <th>担当者 電話番号</th>
@@ -21,7 +22,12 @@
     </tr>
     <tr>
       <th>メモ</th>
-      <td><%= @service.memo %></td>
+      <td>
+        <%= form_for(@service) do |f| %>
+          <%= f.text_field :memo, class: 'form-control' %>
+          <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
+        <% end %>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,8 +1,46 @@
-<div class="user-profile">
-  <div class="icon text-center">
-    <img src="<%= gravatar_url(@user, size: 100) %>" alt="" class="img-circle"> 
+<div class="row">
+  <aside class="col-md-4">
+    <div class="user-profile">
+      <div class="icon text-center">
+        <img src="<%= gravatar_url(@user, size: 100) %>" alt="" class="img-circle"> 
+      </div>
+      <div class="name text-center">
+        <h1><%= @user.name %></h1>
+      </div>
+    </div>
+  </aside>
+  
+  <div class="col-md-4">
+    <article class="panel panel-default">
+      <div class="panel panel-heading"><h3>コンタクトリスト</h3></div>
+      <div class="panel-body user-show-contactlist">
+        <ul>
+          <% @user.services.each do |service| %>
+            <% unless service.name_of_person_in_charge.empty? %>
+              <li>
+                <%= service.name %><br>
+                担当：<%= service.name_of_person_in_charge %> / 
+                <%= link_to service.tel_of_person_in_charge, 'tel:' + service.tel_of_person_in_charge %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </article>
   </div>
-  <div class="name text-center">
-    <h1><%= @user.name %></h1>
+  
+  <div class="col-md-4">
+    <article class="panel panel-default">
+      <div class="panel panel-heading"><h3>候補企業</h3></div>
+      <div class="panel-body">
+        <ul>
+          <% @user.registerings.each do |enterprise| %>
+            <li>
+              <%= link_to enterprise.name, enterprise_url(enterprise) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
   </div>
 </div>

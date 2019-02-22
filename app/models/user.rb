@@ -7,4 +7,19 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :services
+  has_many :candidates
+  has_many :registerings, through: :candidates, source: :enterprise
+  
+  def register(enterprise)
+    self.candidates.find_or_create_by(enterprise_id: enterprise.id)
+  end
+  
+  def unregister(enterprise)
+    candidate = self.candidates.find_by(enterprise_id: enterprise.id)
+    candidate.destroy if candidate
+  end
+  
+  def registering?(enterprise)
+    self.registerings.include?(enterprise)
+  end
 end

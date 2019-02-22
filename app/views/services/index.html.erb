@@ -1,11 +1,11 @@
 <h1>転職サービス管理</h1>
 
 <div class="text-right">
-  <%= link_to '新規登録', new_service_path, class: 'btn btn-primary', :style => "margin-bottom: 10px;" %>
+  <%= link_to '新規登録', new_service_path, class: 'btn btn-primary service-newregi-btn' %>
 </div>
 
 <% if @services.present? %>
-  <table class="table table-bordered" width="100%" style="table-layout: fixed;">
+  <table class="service-index-table table table-bordered" width="100%">
     <thead>
       <tr>
         <th width="30%">サービス名</th>
@@ -17,8 +17,8 @@
       <% @services.each do |service| %>
         <tr>
           <td>
-            <%= link_to '編集', edit_service_path(service), class: 'btn btn-primary', :style => "margin: 0px 0px 0px 5px; " %>
-            <%= link_to '削除', service, method: :delete, data: { confirm: "削除しますか？"}, class: 'btn btn-danger', :style => "margin: 0px 15px 0px 5px; " %>
+            <%= link_to '編集', edit_service_path(service), class: 'btn btn-primary btn-md service-index-edit-btn' %>
+            <%= link_to '削除', service, method: :delete, data: { confirm: "削除しますか？"}, class: 'btn btn-danger btn-md service-index-delete service-index-delete-btn' %>
             <%= link_to service.name, service.url %>
           </td>
           <% if service.kind == "転職サイト" %>
@@ -27,7 +27,12 @@
             <td><%= service.kind %><br>
             ＜<%= link_to '詳細', service %>＞</td>
           <% end %>
-          <td><%= service.memo %></td>
+          <td>
+            <%= form_for(service) do |f| %>
+              <%= f.text_field :memo, class: 'form-control' %>
+              <%= f.submit '更新', class: 'btn btn-default pull-right memo-btn' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

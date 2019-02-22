@@ -9,11 +9,11 @@
           <span class="icon-bar"></span>
         </button>
         <% unless logged_in? %>
-          <a class="navbar-left" href="/"><img src="/image/logo.png" alt="私の転職"></a>
+          <a class="navbar-left" href="/"><img src="/images/logo.png" alt="私の転職"></a>
         <% else %>
-          <%= link_to user_path(current_user) do %>
-            <img src="/image/logo.png" alt="私の転職">
-          <% end %>
+          <h1 class="logo">
+          <%= link_to '私の転職', user_path(current_user), class:'navbar-left logo'%>
+          </h1>
         <% end %>
       </div>
       <div class="collapse navbar-collapse" id="menu">

@@ -1,11 +1,11 @@
 <h1>候補企業管理</h1>
 
 <div class="text-right">
-  <%= link_to '新規登録', new_enterprise_path, class: 'btn btn-primary', :style => "margin-bottom: 10px;" %>
+  <%= link_to '新規登録', new_enterprise_path, class: 'btn btn-primary enterprise-newregi-btn' %>
 </div>
 
 <% if @enterprises.present? %>
-  <table class="table table-bordered" width="100%" style="table-layout: fixed;">
+  <table class="enterprise-index-table table table-bordered" width="100%">
     <thead>
       <tr>
         <th width="30%">企業名</th>
@@ -16,9 +16,17 @@
     <tbody>
       <% @enterprises.each do |enterprise| %>
         <tr>
-          <td><%= link_to enterprise.name, enterprise_path(enterprise) %></td>
+          <td>
+            <%= render 'enterprises/register_button', enterprise: enterprise %>
+            <%= link_to enterprise.name, enterprise_path(enterprise) %>
+          </td>
           <td><%= "***" %></td>
-          <td><%= enterprise.business_contents %></td>
+          <td>
+            <%= form_for(current_user.candidates.find_by(enterprise_id: enterprise.id)) do |f| %>
+              <%= f.text_field :memo, class: 'form-control' %>
+              <%= hidden_field_tag :enterprise_id, enterprise.id %>
+              <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
+            <% end %>
         </tr>
       <% end %>
     </tbody>

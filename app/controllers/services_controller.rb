@@ -31,10 +31,9 @@ class ServicesController < ApplicationController
     
     if @service.update(service_params)
       flash[:success] = '正常に更新されました'
-      redirect_to @service
+      redirect_back(fallback_location: services_url)
     else
       flash.now[:danger] = '更新できませんでした。'
-      render :edit
     end
   end
   
