@@ -17,7 +17,7 @@ class ServicesController < ApplicationController
     @service = current_user.services.build(service_params)
     if @service.save
       flash[:success] = '転職サービスを登録しました。'
-      redirect_to services_url
+      redirect_to @service
     else
       flash.now[:danger] = '登録に失敗しました。'
       render :new
@@ -30,10 +30,13 @@ class ServicesController < ApplicationController
   def update
     
     if @service.update(service_params)
+      
+    #binding.pry
       flash[:success] = '正常に更新されました'
       redirect_to services_url
     else
       flash.now[:danger] = '更新できませんでした。'
+      render :edit
     end
   end
   

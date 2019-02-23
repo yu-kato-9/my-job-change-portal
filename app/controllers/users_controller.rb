@@ -21,9 +21,8 @@ class UsersController < ApplicationController
       render :new
     end
   end
-end
 
-private
+  private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confimation)
@@ -37,4 +36,5 @@ private
     end
   end
 
+end
 
