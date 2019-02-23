@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: my-job-change-portal_production
   username: my-job-change-portal
   password: <%= ENV['MY-JOB-CHANGE-PORTAL_DATABASE_PASSWORD'] %>
