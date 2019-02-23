@@ -11,12 +11,12 @@ class CandidatesController < ApplicationController
   def update
     @candidate = current_user.candidates.find_by(enterprise_id: params[:enterprise_id])
     if @candidate.update(candidate_params)
-      flash[:success] = 'メモを保存しました'
-      redirect_back(fallback_location: enterprises_url)
+      flash[:success] = '内容を保存しました'
+      redirect_to enterprises_url
     else
-      flash.now[:danger] = 'メモが保存できませんでした'
+      flash.now[:danger] = '内容が保存できませんでした'
       @enterprises = current_user.registerings.page(params[:page])
-      render 'enterprise/index'
+      render 'enterprises/index'
     end
   end
 
@@ -30,7 +30,7 @@ class CandidatesController < ApplicationController
   private
   
   def candidate_params
-    params.require(:candidate).permit(:memo)
+    params.require(:candidate).permit(:memo, :service_id)
   end
   
 end

@@ -5,30 +5,39 @@
 </div>
 
 <% if @enterprises.present? %>
-  <table class="enterprise-index-table table table-bordered" width="100%">
-    <thead>
-      <tr>
-        <th width="30%">企業名</th>
-        <th width="15%">掲載元/紹介元</th>
-        <th width="55%">メモ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @enterprises.each do |enterprise| %>
+    <table class="enterprise-index-table table table-bordered" width="100%">
+      <thead>
         <tr>
-          <td>
-            <%= render 'enterprises/register_button', enterprise: enterprise %>
-            <%= link_to enterprise.name, enterprise_path(enterprise) %>
-          </td>
-          <td><%= "***" %></td>
-          <td>
-            <%= form_for(current_user.candidates.find_by(enterprise_id: enterprise.id)) do |f| %>
-              <%= f.text_field :memo, class: 'form-control' %>
-              <%= hidden_field_tag :enterprise_id, enterprise.id %>
-              <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
-            <% end %>
+          <th width="30%">企業名</th>
+          <th width="15%">掲載元/紹介元</th>
+          <th width="55%">メモ</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @enterprises.each do |enterprise| %>
+          <% candidate = current_user.candidates.find_by(enterprise_id: enterprise.id) %>
+          <tr>
+            <td>
+              <%= render 'enterprises/register_button', enterprise: enterprise %>
+              <%= link_to enterprise.name, enterprise_path(enterprise) %>
+            </td>
+            <td class="text-center">
+              <% if candidate.service == nil %>
+                -
+              <% else %>
+                <%= link_to candidate.service.name, candidate.service.url %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_for(candidate) do |f| %>
+                <%= f.text_field :memo, class: 'form-control' %>
+                <%= hidden_field_tag :enterprise_id, enterprise.id %>
+                <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+  <p>登録されている企業はありません。新規登録ボタンより登録して下さい。</p>
 <% end %>

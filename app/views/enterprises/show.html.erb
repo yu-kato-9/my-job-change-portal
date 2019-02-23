@@ -1,6 +1,8 @@
 <h1><%= @enterprise.name %></h1>
 <p><%= link_to '公式サイト', @enterprise.url %></p>
 
+<% user_candidate = current_user.candidates.find_by(enterprise_id: @enterprise.id) %>
+<%= form_for(user_candidate) do |f| %>
 <table class="enterprise-show-table table table-bordered">
   <tbody>
     <tr>
@@ -33,17 +35,24 @@
     </tr>
     <% if current_user.registering?(@enterprise) %>
       <tr>
-        <th>メモ</th>
-        <!--<td><%= current_user.candidates.find_by(enterprise_id: @enterprise.id).memo %></td>-->
+        <th>掲載元/紹介元</th>
         <td>
-          <%= form_for(current_user.candidates.find_by(enterprise_id: @enterprise.id)) do |f| %>
-            <%= f.text_field :memo, class: 'form-control' %>
-            <%= hidden_field_tag :enterprise_id, @enterprise.id %>
-            <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
-          <% end %>
+          <%= f.collection_select :service_id, current_user.services, :id, :name, :prompt => "選択して下さい",class: 'form-control' %>
         </td>
       </tr>
+    
+      <tr>
+        <th>メモ</th>
+        <td>
+          <%= f.text_field :memo, class: 'form-control' %>
+          <%= hidden_field_tag :enterprise_id, @enterprise.id %>
+          <%= f.submit '更新', class: 'btn btn-default pull-right memo-update-btn' %>
+        </td>
+      </tr>
+      
     <% end %>
   </tbody>
 </table>
-<div class="return-link"><%= link_to 'ひとつ前の画面に戻る', :back %></div>
+
+            <% end %>
+<div class="app-return-link"><%= link_to '候補企業管理 画面に戻る', enterprises_url %></div>

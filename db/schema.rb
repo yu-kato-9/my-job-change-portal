@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190217201733) do
+ActiveRecord::Schema.define(version: 20190223004624) do
 
   create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -18,7 +18,9 @@ ActiveRecord::Schema.define(version: 20190217201733) do
     t.string   "memo"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "service_id"
     t.index ["enterprise_id"], name: "index_candidates_on_enterprise_id", using: :btree
+    t.index ["service_id"], name: "index_candidates_on_service_id", using: :btree
     t.index ["user_id"], name: "index_candidates_on_user_id", using: :btree
   end
 

@@ -11,4 +11,6 @@ class Service < ApplicationRecord
                     format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   
   belongs_to :user
+  
+  has_many :candidates
 end

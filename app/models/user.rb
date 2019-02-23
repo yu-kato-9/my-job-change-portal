@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :registerings, through: :candidates, source: :enterprise
   
   def register(enterprise)
+    #binding.pry
     self.candidates.find_or_create_by(enterprise_id: enterprise.id)
   end
   

@@ -2,17 +2,19 @@
   <h1>test</h1>
 <% else %>
   <div class="jumbotron">
+    <div class="transparent-mask">
     <div class="container">
       <h1>私の転職</h1>
       <p>私の転職は私が管理</p>
       <div class="text-center">
         <div class="btn-group" role="group">
           <p>
-            <%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-lg top-btn' %>
-            <%= link_to 'ログイン', login_path, class: 'btn btn-primary btn-lg top-btn' %>
+            <%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-lg toppage-btn' %>
+            <%= link_to 'ログイン', login_path, class: 'btn btn-primary btn-lg toppage-btn' %>
           </p>
         </div>
       </div>
+    </div>
     </div>
   </div>
 <% end %>
