@@ -1,11 +1,11 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <div class="user-profile">
       <div class="icon text-center">
-        <img src="<%= gravatar_url(@user, size: 100) %>" alt="" class="img-circle"> 
+        <img src="<%= gravatar_url(current_user, size: 100) %>" alt="" class="img-circle"> 
       </div>
       <div class="name text-center">
-        <h1><%= @user.name %></h1>
+        <h1><%= current_user.name %></h1>
       </div>
     </div>
   </aside>
@@ -15,7 +15,7 @@
       <div class="panel panel-heading"><h3>コンタクトリスト</h3></div>
       <div class="panel-body user-show-contactlist">
         <ul>
-          <% @user.services.each do |service| %>
+          <% current_user.services.each do |service| %>
             <% unless service.name_of_person_in_charge.empty? %>
               <li>
                 <%= service.name %><br>
@@ -29,14 +29,21 @@
     </article>
   </div>
   
-  <div class="col-md-4">
+  <div class="col-md-5">
     <article class="panel panel-default">
       <div class="panel panel-heading"><h3>候補企業</h3></div>
       <div class="panel-body user-show-candidate">
         <ul>
-          <% @user.registerings.each do |enterprise| %>
+          <% current_user.registerings.each do |enterprise| %>
             <li>
               <%= link_to enterprise.name, enterprise_url(enterprise) %>
+              (
+              <% if current_user.candidates.find_by(enterprise_id: enterprise.id).service == nil %>
+                -
+              <% else %>
+                <%= link_to current_user.candidates.find_by(enterprise_id: enterprise.id).service.name, current_user.candidates.find_by(enterprise_id: enterprise.id).service.url %>
+              <% end %>
+              )
             </li>
           <% end %>
         </ul>

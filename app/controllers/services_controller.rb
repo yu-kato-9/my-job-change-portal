@@ -30,8 +30,6 @@ class ServicesController < ApplicationController
   def update
     
     if @service.update(service_params)
-      
-    #binding.pry
       flash[:success] = '正常に更新されました'
       redirect_to services_url
     else
